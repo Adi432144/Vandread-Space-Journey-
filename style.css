@@ -1,0 +1,221 @@
+/* Add Google Font import for Source Code Pro */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400;500;600;700;800;900&display=swap');
+
+/* Apply Source Code Pro font with a unique class name */
+.source-code-pro-code-snippet {
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400; /* Use a value from 200 to 900 */
+  font-style: normal;
+}
+
+body {
+  color: #ffffff;
+  background: #17153B;
+  margin: 0;
+  font-family: "Source Code Pro", monospace;
+}
+body * {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+body *, body *::before, body *::after {
+  box-sizing: border-box;
+}
+#main,
+#content {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+}
+
+canvas#main {
+  pointer-events: none;
+  z-index: 0;
+}
+[data-status*=pause] canvas#main, [data-status*=over] canvas#main {
+  opacity: 0.6;
+  filter: blur(2px);
+}
+
+#content {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+#content #instructionsWrapper {
+  flex: 1 0 100%;
+  box-sizing: border-box;
+  width: 100%;
+}
+#content #instructionsWrapper #instructions {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+#content #instructionsWrapper #instructions::before, #content #instructionsWrapper #instructions::after {
+  display: block;
+  margin-top: 16px;
+  font-weight: 900;
+  line-height: 1;
+}
+#content #instructionsWrapper #instructions::before {
+  content: attr(data-title);
+  font-size: 64px;
+  text-shadow: 0 0 32px #fff;
+}
+#content #instructionsWrapper #instructions::after {
+  content: attr(data-text);
+  font-size: 32px;
+  text-shadow: 0 0 16px #fff;
+}
+#content #instructionsWrapper #instructions[data-title=""]::before, #content #instructionsWrapper #instructions[data-text=""]::after {
+  display: none;
+}
+#content::before {
+  flex: 1 0 100%;
+  display: block;
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  padding: 0 16px;
+}
+#content::after {
+  flex: 1 0 100%;
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
+  margin: 16px auto 0 auto;
+  padding: 0 16px;
+}
+[data-status*=pause] #content::before {
+  content: "PAUSE";
+}
+[data-status*=pause] #content::after {
+  content: "";
+}
+[data-status*=over] #content::before {
+  content: "GAME OVER";
+}
+[data-status*=over] #content::after {
+  content: "Double click or hit 'Enter' key to try again.";
+}
+
+#uiTop {
+  color: white;
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: auto;
+  padding: 16px;
+  z-index: 1;
+  text-shadow: 0 0 12px #ffffff;
+}
+
+#score,
+#highScore {
+  width: 100%;
+  height: auto;
+  white-space: nowrap;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#highScore {
+  font-size: 14px;
+  font-weight: 700;
+}
+#highScore::before {
+  content: "hi-score: ";
+}
+
+#score {
+  font-size: 24px;
+  font-weight: 900;
+}
+#score::before {
+  content: "score: ";
+}
+
+#title {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  max-width: 100vw;
+  max-height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  perspective: 640px;
+  perspective-origin: center top;
+}
+#title > h1 {
+  display: inline-block;
+  color: white;
+  font-size: clamp(40px, 12vw, 120px);
+  font-weight: 900;
+  line-height: 0.83;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px #271414;
+  margin: 0 auto;
+  padding: clamp(40px, 25vh, 200px) 0 0 0;
+  transition: all 0.4s ease-in;
+  transform: rotate3d(1, 0, 0, 50deg);
+}
+@media (orientation: portrait) {
+  #title > h1 {
+    font-size: clamp(40px, 12vw, 80px);
+    padding-top: clamp(40px, 30vh, 200px);
+  }
+}
+#title > h1 > span {
+  display: block;
+  font-size: 0.2em;
+  line-height: 1;
+  padding-bottom: 0.5em;
+}
+#title[data-shown=false] > h1 {
+  transform: scale(0.1) rotate3d(1, 0, 0, 10deg) translate(0, -2000px);
+  opacity: 0;
+}
+#title[data-shown=false] > h1 > span {
+  display: none;
+}
+[data-status*=pause] #title > h1, [data-status*=over] #title > h1 {
+  scale: 0.43;
+  padding-top: 40px;
+  font-size: clamp(80px, 6vw, 100px);
+}
+@media (orientation: portrait) {
+  [data-status*=pause] #title > h1, [data-status*=over] #title > h1 {
+    scale: 0.83;
+    font-size: clamp(35px, 6vw, 40px);
+    padding-top: 80px;
+  }
+}
+[data-status*=pause] #title > h1 > span, [data-status*=over] #title > h1 > span {
+  display: none;
+}

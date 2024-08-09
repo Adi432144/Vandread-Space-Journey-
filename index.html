@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vandread Space</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <canvas id="main"></canvas>
+  <div id="content">
+    <div id="instructionsWrapper">
+      <div id="instructions" data-title="" data-text=""></div>
+    </div>
+  </div>
+  <div id="uiTop">
+    <div id="highScore">-</div>
+    <div id="score">-</div>
+  </div>
+  <div id="title" data-shown="false">
+    <h1>
+      <span>Vandread</span>
+      space<br>Journey
+    </h1>
+  </div>
+  <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js'></script>
+  <script src='https://mrdoob.github.io/stats.js/build/stats.min.js'></script>
+  <script src="./script.js"></script>
+
+</body>
+
+</html>
